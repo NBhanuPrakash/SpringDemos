@@ -1,0 +1,24 @@
+package com.NNTeachie.Payment.Controller;
+
+import com.NNTeachie.Payment.Entity.Payment;
+import com.NNTeachie.Payment.Service.PaymentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/payment")
+public class paymentController {
+
+    @Autowired
+    private PaymentService paymentService;
+
+    @PostMapping
+    public Payment doPayment(@RequestBody Payment payment){
+        return paymentService.doPayment(payment);
+    }
+
+    @GetMapping
+    public Payment getPayment(@PathVariable int orderId){
+        return paymentService.getPayment(orderId);
+    }
+}

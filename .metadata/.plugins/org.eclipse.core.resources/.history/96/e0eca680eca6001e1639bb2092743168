@@ -1,0 +1,51 @@
+package com.NNTechie.QuizApp.Configuration;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+
+import com.NNTechie.QuizApp.Security.UserInfoUserDetailsService;
+
+@Configuration
+@EnableMethodSecurity
+@EnableWebSecurity
+public class QuizAppCfg {
+	
+	@Bean
+	public UserDetailsService userDetailsService() {
+		return new UserInfoUserDetailsService();
+	}
+	
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+		return http.csrf().disable()
+		.authorizeHttpRequests()
+		.requestMatchers("/add/user","/admin/access","/user/access").permitAll()
+		.requestMatchers("/admin/access/**").hasRole("ADMIN")
+		.requestMatchers("/user/access/**").hasRole("USER")
+		.and().formLogin()
+		.and().build();
+	}
+	
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+	
+	
+	@Bean
+	public AuthenticationProvider authenticationProvider() {
+		DaoAuthenticationProvider dAo = new DaoAuthenticationProvider();
+		dAo.setUserDetailsService(userDetailsService());
+		dAo.setPasswordEncoder(passwordEncoder());
+		return dAo;
+	}
+}

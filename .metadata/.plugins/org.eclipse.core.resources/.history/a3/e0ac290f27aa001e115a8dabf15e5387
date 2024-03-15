@@ -1,0 +1,31 @@
+package com.NNTeachie.Payment.Service;
+
+import com.NNTeachie.Payment.Entity.Payment;
+import com.NNTeachie.Payment.Repo.PaymentRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Random;
+import java.util.UUID;
+
+@Service
+public class PaymentServiceImpl implements PaymentService {
+
+    @Autowired
+    private PaymentRepo paymentRepo;
+    @Override
+    public Payment doPayment(Payment payment) {
+        payment.setPaymentStatus(paymentProcess());
+        payment.setTransactionId(UUID.randomUUID().toString());
+        return paymentRepo.save(payment);
+    }
+
+    public String paymentProcess(){
+        return new Random().nextBoolean()?"Success":"Failed";
+    }
+
+    @Override
+    public Payment getPayment(int orderId) {
+        return paymentRepo.findByOrderId(orderId);
+    }
+}

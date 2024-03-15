@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete element from project &apos;RedisCache&apos;&#x0D;&#x0A;- Original project: &apos;RedisCache&apos;&#x0D;&#x0A;- Original element: &apos;RedisCache/src/main/java/com.RedisCache.Repo&apos;" description="Delete element" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.RedisCache.Repo" elements="1" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1700631356215" subPackages="false" version="1.0"/>
+</session>

@@ -1,0 +1,19 @@
+package com.NNTeachie.Orders.Dto;
+
+import com.NNTechie.Orders.Entity.Orders;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class ResponseOrders {
+
+    private Orders orders;
+
+    private String status;
+
+    private String transactionId;
+}

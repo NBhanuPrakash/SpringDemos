@@ -1,0 +1,27 @@
+package com.NNTechie.Security.Service;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.NNTechie.Security.Entity.User;
+import com.NNTechie.Security.Repo.UserInfoRepo;
+
+
+@Service
+public class UserService {
+	
+	private static final Logger log = LoggerFactory.getLogger(UserService.class);
+
+	@Autowired
+	private UserInfoRepo userInfoRepo;
+	
+	
+	public String saveData(User user) {
+		userInfoRepo.save(user);
+		log.info("Its Saved"+user);
+		return "Saved";
+		
+	}
+}

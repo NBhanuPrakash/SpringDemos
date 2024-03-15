@@ -1,0 +1,16 @@
+package com.NNTeachie.Orders.Dto;
+
+import com.NNTeachie.Orders.Entity.Orders;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class RequestOrders {
+
+    private Orders orders;
+
+    private Payment payment;
+}

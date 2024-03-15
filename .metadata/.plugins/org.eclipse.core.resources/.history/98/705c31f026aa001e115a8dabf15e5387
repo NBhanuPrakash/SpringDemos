@@ -1,0 +1,27 @@
+package com.NNTeachie.Payment.Entity;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "payment_details")
+public class Payment {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private int id;
+
+    private String paymentStatus;
+
+    private String transactionId;
+
+    private int orderId;
+
+    private long price;
+
+}

@@ -1,0 +1,12 @@
+package com.NNTechie.Orders.Service;
+
+import com.NNTeachie.Orders.Dto.RequestOrders;
+import com.NNTeachie.Orders.Dto.ResponseOrders;
+import com.NNTechie.Orders.Entity.Orders;
+
+public interface OrdersService {
+
+    public ResponseOrders doOrders(RequestOrders requestOrders);
+
+    public ResponseOrders getOrderId(int orderId);
+}

@@ -1,0 +1,10 @@
+package com.NNTeachie.Payment.Service;
+
+import com.NNTeachie.Payment.Entity.Payment;
+
+public interface PaymentService {
+
+    public Payment doPayment(Payment payment);
+
+    public Payment getPayment(int orderId);
+}

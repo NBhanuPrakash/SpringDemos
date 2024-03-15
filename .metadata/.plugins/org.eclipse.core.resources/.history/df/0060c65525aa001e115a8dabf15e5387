@@ -1,0 +1,38 @@
+package com.NNTechie.Orders.Service;
+
+import com.NNTeachie.Orders.Dto.Payment;
+import com.NNTeachie.Orders.Dto.RequestOrders;
+import com.NNTeachie.Orders.Dto.ResponseOrders;
+import com.NNTeachie.Orders.Entity.Orders;
+import com.NNTeachie.Orders.Repo.OrdersRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+@Service
+public class OrdersServiceImpl implements  OrdersService{
+
+    @Autowired
+    private OrdersRepo ordersRepo;
+    @Autowired
+    private RestTemplate restTemplate;
+    @Override
+    public ResponseOrders doOrders(RequestOrders requestOrders) {
+        Orders orders = requestOrders.getOrders();
+        Payment payment = requestOrders.getPayment();
+        payment.setOrderId(orders.getOrderId());
+        payment.setPrice(orders.getPrice());
+        Payment payment1 = restTemplate.postForObject("http://PAYMENT-SERVICE/payment", payment, Payment.class);
+        Orders save = ordersRepo.save(orders);
+        String response=null;
+        response= (payment1.getPaymentStatus().equals("Success")?"Order Conformed":"Order Failed");
+
+
+        return new ResponseOrders(save,response, payment1.getTransactionId());
+    }
+
+    @Override
+    public ResponseOrders getOrderId(int orderId) {
+        return null;
+    }
+}

@@ -1,0 +1,19 @@
+package com.NNTeachie.Orders.Dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Payment {
+
+    private int orderId;
+
+    private String price;
+
+    private String paymentStatus;
+
+    private String transactionId;
+}

@@ -1,0 +1,23 @@
+package com.NNTechie.Orders.Controller;
+
+import com.NNTeachie.Orders.Dto.RequestOrders;
+import com.NNTeachie.Orders.Dto.ResponseOrders;
+import com.NNTeachie.Orders.Service.OrdersService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/orders")
+public class OrdersController {
+
+    @Autowired
+    private OrdersService ordersService;
+
+    @PostMapping
+    public ResponseOrders doOrders(@RequestBody RequestOrders requestOrders){
+        return ordersService.doOrders(requestOrders);
+    }
+}
